@@ -23,8 +23,8 @@ const db = knex({
     connection: {
         host: 'localhost',
         user: 'postgres',
-        password: 'Tucker15!',
-        database: 'Beer_Me'
+        password: '',
+        database: 'drink-social'
     }
 })
 
