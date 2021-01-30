@@ -1,5 +1,5 @@
 const express = require('express');
-
+const createTimeStamp = require('../../utils/date');
 const UserService = require('./user-service');
 
 const UserRouter = express.Router();
@@ -15,7 +15,8 @@ UserRouter
         console.log("REQ BODY",req.body);
         const newUser = {
             username: name,
-            email
+            email,
+            created: createTimeStamp()
         }
 
         const user = UserService.insertUser(

@@ -1,7 +1,8 @@
 const express = require('express');
+const createTimeStamp = require('./utils/date');
 
-const UserRouter = require('./routes/user-route/user-router')
-
+const UserRouter = require('./routes/user-route/user-router');
+createTimeStamp();
 require('dotenv').config();
 
 const cors = require('cors');
