@@ -2,7 +2,7 @@ const express = require('express');
 const createTimeStamp = require('./utils/date');
 
 const UserRouter = require('./routes/user-route/user-router');
-createTimeStamp();
+const TimeRouter = require('./routes/time-route/time-router');
 require('dotenv').config();
 
 const cors = require('cors');
@@ -20,6 +20,7 @@ app.use(helmet());
 app.use(cors());
 
 app.use('/api',UserRouter);
+app.use('/api',TimeRouter);
 
 
 
