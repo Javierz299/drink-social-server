@@ -1,4 +1,5 @@
 const express = require('express');
+const { init } = require('../../app');
 const createTimeStamp = require('../../utils/createTimeStamp');
 const DrinkService = require('./drink-service');
 
@@ -14,15 +15,17 @@ DrinkRouter
         const newDrink = req.body
         const newDrinkwTimeStamp = {...newDrink, submitted: createTimeStamp()}
     
-        //instead of posting amount value post 1 per submitt 
-        //and then times total with amount values when getting all drinks
-        console.log('newDrink',newDrinkwTimeStamp);
-
         const drinkItem = DrinkService.insertDrink(
             req.app.get('db'),
             newDrinkwTimeStamp
         )
-        console.log("DRINK ITEM", drinkItem)
+
+        let initialPostCreated = drinkItem.then(res => res.initialPost)
+        //we need to return something else, otherwise we get a 500 server error
+        //on the client side due to trying to post again.
+        //if "already created" just return nothing.
+        if(initialPostCreated) return;
+
         res.status(201)
         .json(DrinkService.serializeUser(drinkItem))
  

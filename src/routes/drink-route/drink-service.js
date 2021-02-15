@@ -3,6 +3,14 @@ const DrinkService = {
         //check db table "beer" if there is an intial post
         let beer_table = await db.select('*').from("beer").where('user_id',newDrink.user_id)
         console.log("newdrink",newDrink)
+        console.log('beer_table',beer_table[0])
+
+        //beer table should have found current users initial post
+        //there for return already created
+        if(beer_table.length > 0){
+            return {initialPost: "already created"}
+        }
+
         if(!beer_table.length){
              console.log("initialPost")
              return db
@@ -11,9 +19,6 @@ const DrinkService = {
                 .returning('*')
                 .then(([beer]) => beer)
          }
-        // if not create first post
-
-        //patch post
     },
     serializeDrink(drink){
         return {
