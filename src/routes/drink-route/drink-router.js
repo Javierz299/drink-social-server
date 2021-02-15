@@ -23,12 +23,24 @@ DrinkRouter
             newDrinkwTimeStamp
         )
         console.log("DRINK ITEM", drinkItem)
-        // res.status(201)
-        // .json(UserService.serializeUser(user))
+        res.status(201)
+        .json(DrinkService.serializeUser(drinkItem))
  
         next()
 
-})
+});
+
+DrinkRouter
+    .patch('/patch/beer', (req,res,next) => {
+        const updateDrink = req.body;
+        DrinkService.patchUserDrink(
+            req.app.get('db'),
+            {...updateDrink, submitted: createTimeStamp()}
+        )
+        
+        res.status(204).end()
+        
+});
 
 
 
