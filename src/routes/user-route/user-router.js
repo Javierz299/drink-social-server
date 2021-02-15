@@ -1,18 +1,18 @@
 const express = require('express');
-const createTimeStamp = require('../../utils/date');
+const createTimeStamp = require('../../utils/createTimeStamp');
 const UserService = require('./user-service');
 
 const UserRouter = express.Router();
 
 //This is a built-in middleware function in Express.
 // It parses incoming requests with JSON payloads
-const bodyParser = express.json();
+//const bodyParser = express.json();
 
 UserRouter
-    .post('/post/userprofile',bodyParser, (req,res,next) => { 
+    .post('/post/userprofile', (req,res,next) => { 
         // add new user to db
         const { name, email } = req.body
-        console.log("REQ BODY",req.body);
+        //console.log("REQ BODY",req.body);
         const newUser = {
             username: name,
             email,
@@ -31,20 +31,21 @@ UserRouter
 })
 
 UserRouter
-    .get('/get/userprofile/:email', bodyParser, async (req,res,next) => {
+    .get('/get/userid/:email', async (req,res,next) => {
         const { email } = req.params
-
-       await UserService.getUserProfile(req.app.get('db'),email)
+        console.log("get id",email)
+       await UserService.getUserId(req.app.get('db'),email)
             .then(result => {
                 if(!result){
-                    console.log('no result??')
+                    console.log('no result')
                     res.status(404).send({
                         error: 'user not found'
                     })
                 }
+                console.log("RES",result)
                 res.json(result)
             })
-
+        next()
     })
 
     module.exports = UserRouter

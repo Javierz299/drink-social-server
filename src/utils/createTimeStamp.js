@@ -1,12 +1,16 @@
 let currentDate = new Date().toISOString();
 let currentDate2 = new Date();
 
-const createTimeStamp = (dbTime) => {
-    //console.log('db',JSON.stringify(dbTime))
+const createTimeStamp = () => {
+    return currentDate
+}
+
+const convertTimeStamp = (dbTime) => {
+    console.log('db',JSON.stringify(dbTime))
     let dbTimeStamp = new Date(dbTime)
     console.log("current",currentDate2)
 
-    console.log("timestamp",dbTimeStamp)
+    console.log("DB timestamp",dbTimeStamp)
 let diffMs = (currentDate2- dbTimeStamp); // milliseconds between now & dbTimeStamp
 let diffMs2 = diffMs
 let days = Math.floor(diffMs2/1000/60/60/24)

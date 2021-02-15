@@ -1,0 +1,58 @@
+Lastdrink =>
+id last_drink_at
+______________________________________
+
+table 1 - beer
+brewski => 1
+pint_brewski => 1.3
+tall_brewski => 2
+
+forty => 3.3
+
+craft => 1
+pint_craft => 1.3
+tall_craft => 2
+
+seltzer => 1
+tall_seltzer => 2
+
+6%_brewski => 1.3
+7%_brewski => 1.7
+8%_brewski => 2.3
+9%_brewski => 2.7
+10%_brewski => 3.5
+
+total => getAllDrinks
+______________________________________
+table 2 - cocktails
+// all values one
+margarita
+bloody mary
+mimosa
+mojito
+gin and tonic
+moscow mule
+paloma
+daiquiri
+long island
+misc_cocktail
+______________________________________
+table 3 => wine
+// all values one
+red_wine
+white_wine
+sangria
+champagne
+______________________________________
+table 4 => liquor
+// all values one
+tequilla_shot
+vodka_shot
+whiskey_shot
+______________________________________
+table 5 => binge
+
+beer_bong
+shotgun
+boilermaker => 3
+
