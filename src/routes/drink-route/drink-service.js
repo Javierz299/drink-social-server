@@ -1,4 +1,22 @@
 const DrinkService = {
+////////////// GET ALL DRINKS /////////////////
+async getAllDrinks(db,id){
+    let userBeerTable = await db.select('*').from('beer').where('user_id',id);
+    let userCocktailTable = await db.select('*').from('cocktail').where('user_id',id);
+    let userWineTable = await db.select('*').from('wine').where('user_id',id);
+    let userLiquorTable = await db.select('*').from('liquor').where('user_id',id);
+    let userBingeTable = await db.select('*').from('binge').where('user_id',id);
+
+    const allDrinkTables = {
+        beerTable: userBeerTable[0],
+        cocktailTable: userCocktailTable[0],
+        wineTable: userWineTable[0],
+        liquorTable: userLiquorTable[0],
+        bingeTable: userBingeTable[0]
+    }
+    return allDrinkTables;
+},
+
 ////////////////// BEER CAROUSEL /////////////////////
     async insertBeerDrink(db,newDrink){
         //check db table "beer" if there is an intial post

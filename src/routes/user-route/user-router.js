@@ -32,7 +32,7 @@ UserRouter
 
 UserRouter
     .get('/get/userid/:email', async (req,res,next) => {
-        const { email } = req.params
+        const { email } = req.params;
         console.log("get id",email)
        await UserService.getUserId(req.app.get('db'),email)
             .then(result => {
@@ -46,6 +46,6 @@ UserRouter
                 res.json(result)
             })
         next()
-    })
+});
 
     module.exports = UserRouter

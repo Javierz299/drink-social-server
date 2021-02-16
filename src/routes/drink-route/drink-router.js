@@ -8,6 +8,27 @@ const DrinkRouter = express.Router();
 // It parses incoming requests with JSON payloads
 //const bodyParser = express.json();
 
+////// GET ALL DRINKS /////////////////
+DrinkRouter
+    .get('/get/allDrinks/:id', async (req,res,next) => {
+        const { id } = req.params;
+
+        await DrinkService.getAllDrinks(
+            req.app.get('db'),
+            id
+        )
+        .then(result => {
+            console.log("get all drinks", result)
+            if(!result){
+                console.log("no result")
+                res.status(404).send({error: 'no drinks found'})
+            }
+            console.log('RES,drink-router',result)
+            res.json(result)
+        });
+        next()
+});
+
 ////////  BEER ENDPOINT //////////////////
 DrinkRouter
     .post('/post/userBeerItem', (req,res,next) => { 
