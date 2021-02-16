@@ -186,6 +186,47 @@ const DrinkService = {
         .update({'submitted': userDrink.submitted})
         .increment(userDrink.userDrinkItem, 1)
     },
+
+////////////////// BINGE CAROUSEL /////////////////////
+    async insertBingeDrink(db,newDrink){
+        //check db table "beer" if there is an intial post
+        let binge_table = await db.select('*').from("binge").where('user_id',newDrink.user_id);
+        //console.log('cocktail_table',cocktial_table[0])
+
+        //beer table should have found current users initial post
+        //there for return already created
+        if(binge_table.length){
+            console.log('binge already created')
+            return {initialPost: "already created"}
+        }
+
+        if(!binge_table.length){
+             console.log("initialPost",newDrink)
+             return db
+                .insert(newDrink)
+                .into('binge')
+                .returning('*')
+                .then(([binge]) => binge)
+         }
+    },
+    serializeBinge(drink){
+        return {
+            user_id: drink.user_id,
+            beer_bong: drink.beer_bong,
+            shotgun: drink.shotgun,
+            boilermaker: drink.boilermaker,
+            submitted: drink.submitted
+        }
+    },
+    async patchBingeDrink(db,userDrink){
+        console.log("patch",userDrink)
+        return await db
+        .select(userDrink.userDrinkItem)
+        .from('binge')
+        .where('user_id',userDrink.dbUserId)
+        .update({'submitted': userDrink.submitted})
+        .increment(userDrink.userDrinkItem, 1)
+    },
 }
 
 module.exports = DrinkService

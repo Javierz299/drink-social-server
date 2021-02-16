@@ -142,6 +142,39 @@ DrinkRouter
         
         res.status(204).end();
 });
+///////// BINGE ENDPOINT ///////////////
+DrinkRouter
+    .post('/post/userBingeItem', (req,res,next) => { 
+        // add new drink to db
+        const newDrink = req.body
+        const newDrinkwTimeStamp = {...newDrink, submitted: createTimeStamp()}
+        const drinkItem = DrinkService.insertBingeDrink(
+            req.app.get('db'),
+            newDrinkwTimeStamp
+        );
+
+        let initialPostCreated = drinkItem.then(res => res.initialPost)
+        //we need to return something else, otherwise we get a 500 server error
+        //on the client side due to trying to post again.
+        //if "already created" just return nothing.
+        if(initialPostCreated) return;
+
+        res.status(201)
+        .json(DrinkService.serializeBinge(drinkItem));
+ 
+        next();
+
+});
+DrinkRouter
+    .patch('/patch/binge', (req,res,next) => {
+        const updateDrink = req.body;
+        DrinkService.patchBingeDrink(
+            req.app.get('db'),
+            {...updateDrink, submitted: createTimeStamp()}
+        );
+        
+        res.status(204).end();
+});
 
 
 
