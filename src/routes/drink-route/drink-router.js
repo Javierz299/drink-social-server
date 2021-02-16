@@ -27,10 +27,9 @@ DrinkRouter
         if(initialPostCreated) return;
 
         res.status(201)
-        .json(DrinkService.serializeBeer(drinkItem))
+        .json(DrinkService.serializeBeer(drinkItem));
  
-        next()
-
+        next();
 });
 DrinkRouter
     .patch('/patch/beer', (req,res,next) => {
@@ -38,10 +37,9 @@ DrinkRouter
         DrinkService.patchBeerDrink(
             req.app.get('db'),
             {...updateDrink, submitted: createTimeStamp()}
-        )
+        );
         
-        res.status(204).end()
-        
+        res.status(204).end();
 });
 ///////// COCKTAIL ENDPOINT ///////////////
 DrinkRouter
@@ -62,10 +60,9 @@ DrinkRouter
         if(initialPostCreated) return;
 
         res.status(201)
-        .json(DrinkService.serializeCocktail(drinkItem))
+        .json(DrinkService.serializeCocktail(drinkItem));
  
-        next()
-
+        next();
 });
 DrinkRouter
     .patch('/patch/cocktail', (req,res,next) => {
@@ -73,10 +70,9 @@ DrinkRouter
         DrinkService.patchCocktailDrink(
             req.app.get('db'),
             {...updateDrink, submitted: createTimeStamp()}
-        )
+        );
         
-        res.status(204).end()
-        
+        res.status(204).end();
 });
 ///////// WINE ENDPOINT ///////////////
 DrinkRouter
@@ -97,9 +93,9 @@ DrinkRouter
         if(initialPostCreated) return;
 
         res.status(201)
-        .json(DrinkService.serializeWine(drinkItem))
+        .json(DrinkService.serializeWine(drinkItem));
  
-        next()
+        next();
 
 });
 DrinkRouter
@@ -108,10 +104,43 @@ DrinkRouter
         DrinkService.patchWineDrink(
             req.app.get('db'),
             {...updateDrink, submitted: createTimeStamp()}
-        )
+        );
         
-        res.status(204).end()
+        res.status(204).end();
+});
+///////// LIQUOR ENDPOINT ///////////////
+DrinkRouter
+    .post('/post/userLiquorItem', (req,res,next) => { 
+        // add new drink to db
+        const newDrink = req.body
+        const newDrinkwTimeStamp = {...newDrink, submitted: createTimeStamp()}
+        console.log('liquor route ', newDrinkwTimeStamp)
+        const drinkItem = DrinkService.insertLiquorDrink(
+            req.app.get('db'),
+            newDrinkwTimeStamp
+        );
+
+        let initialPostCreated = drinkItem.then(res => res.initialPost)
+        //we need to return something else, otherwise we get a 500 server error
+        //on the client side due to trying to post again.
+        //if "already created" just return nothing.
+        if(initialPostCreated) return;
+
+        res.status(201)
+        .json(DrinkService.serializeLiquor(drinkItem));
+ 
+        next();
+
+});
+DrinkRouter
+    .patch('/patch/liquor', (req,res,next) => {
+        const updateDrink = req.body;
+        DrinkService.patchLiquorDrink(
+            req.app.get('db'),
+            {...updateDrink, submitted: createTimeStamp()}
+        );
         
+        res.status(204).end();
 });
 
 

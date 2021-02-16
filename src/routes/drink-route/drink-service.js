@@ -3,8 +3,6 @@ const DrinkService = {
     async insertBeerDrink(db,newDrink){
         //check db table "beer" if there is an intial post
         let beer_table = await db.select('*').from("beer").where('user_id',newDrink.user_id);
-        console.log("newdrink",newDrink)
-        console.log('beer_table',beer_table[0])
 
         //beer table should have found current users initial post
         //there for return already created
@@ -57,7 +55,6 @@ const DrinkService = {
     async insertCocktailDrink(db,newDrink){
         //check db table "beer" if there is an intial post
         let cocktail_table = await db.select('*').from("cocktail").where('user_id',newDrink.user_id);
-        console.log("newdrink",newDrink)
         //console.log('cocktail_table',cocktial_table[0])
 
         //beer table should have found current users initial post
@@ -107,7 +104,6 @@ const DrinkService = {
     async insertWineDrink(db,newDrink){
         //check db table "beer" if there is an intial post
         let wine_table = await db.select('*').from("wine").where('user_id',newDrink.user_id);
-        console.log("newdrink",newDrink)
         //console.log('cocktail_table',cocktial_table[0])
 
         //beer table should have found current users initial post
@@ -141,6 +137,51 @@ const DrinkService = {
         return await db
         .select(userDrink.userDrinkItem)
         .from('wine')
+        .where('user_id',userDrink.dbUserId)
+        .update({'submitted': userDrink.submitted})
+        .increment(userDrink.userDrinkItem, 1)
+    },
+
+////////////////// LIQUOR CAROUSEL /////////////////////
+    async insertLiquorDrink(db,newDrink){
+        //check db table "beer" if there is an intial post
+        let liquor_table = await db.select('*').from("liquor").where('user_id',newDrink.user_id);
+        //console.log('cocktail_table',cocktial_table[0])
+
+        //beer table should have found current users initial post
+        //there for return already created
+        if(liquor_table.length){
+            console.log('liquor already created')
+            return {initialPost: "already created"}
+        }
+
+        if(!liquor_table.length){
+             console.log("initialPost")
+             return db
+                .insert(newDrink)
+                .into('liquor')
+                .returning('*')
+                .then(([liquor]) => liquor)
+         }
+    },
+    serializeLiquor(drink){
+        console.log("serialize liquor",drink)
+        return {
+            user_id: drink.user_id,
+            tequila_shot: drink.tequila_shot,
+            vodka_shot: drink.vodka_shot,
+            whiskey_shot: drink.whiskey_shot,
+            bourbon: drink.bourbon,
+            scotch: drink.scotch,
+            brandy: drink.brandy,
+            submitted: drink.submitted
+        }
+    },
+    async patchLiquorDrink(db,userDrink){
+        console.log("patch",userDrink)
+        return await db
+        .select(userDrink.userDrinkItem)
+        .from('liquor')
         .where('user_id',userDrink.dbUserId)
         .update({'submitted': userDrink.submitted})
         .increment(userDrink.userDrinkItem, 1)
