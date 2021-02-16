@@ -8,7 +8,8 @@ const DrinkService = {
 
         //beer table should have found current users initial post
         //there for return already created
-        if(beer_table.length > 0){
+        if(beer_table.length){
+            console.log("beer already created")
             return {initialPost: "already created"}
         }
 
@@ -61,7 +62,8 @@ const DrinkService = {
 
         //beer table should have found current users initial post
         //there for return already created
-        if(cocktail_table.length > 0){
+        if(cocktail_table.length){
+            console.log('cocktail already created')
             return {initialPost: "already created"}
         }
 
@@ -96,6 +98,49 @@ const DrinkService = {
         return await db
         .select(userDrink.userDrinkItem)
         .from('cocktail')
+        .where('user_id',userDrink.dbUserId)
+        .update({'submitted': userDrink.submitted})
+        .increment(userDrink.userDrinkItem, 1)
+    },
+
+////////////////// WINE CAROUSEL /////////////////////
+    async insertWineDrink(db,newDrink){
+        //check db table "beer" if there is an intial post
+        let wine_table = await db.select('*').from("wine").where('user_id',newDrink.user_id);
+        console.log("newdrink",newDrink)
+        //console.log('cocktail_table',cocktial_table[0])
+
+        //beer table should have found current users initial post
+        //there for return already created
+        if(wine_table.length){
+            console.log('wine already created')
+            return {initialPost: "already created"}
+        }
+
+        if(!wine_table.length){
+             console.log("initialPost")
+             return db
+                .insert(newDrink)
+                .into('wine')
+                .returning('*')
+                .then(([wine]) => wine)
+         }
+    },
+    serializeWine(drink){
+        return {
+            user_id: drink.user_id,
+            red_wine: drink.red_wine,
+            white_wine: drink.white_wine,
+            sangria: drink.sangria,
+            champagne: drink.champagne,
+            submitted: drink.submitted
+        }
+    },
+    async patchWineDrink(db,userDrink){
+        console.log("patch",userDrink)
+        return await db
+        .select(userDrink.userDrinkItem)
+        .from('wine')
         .where('user_id',userDrink.dbUserId)
         .update({'submitted': userDrink.submitted})
         .increment(userDrink.userDrinkItem, 1)
