@@ -1,3 +1,4 @@
+
 const DrinkService = {
 ////////////// GET ALL DRINKS /////////////////
 async getAllDrinks(db,id){
@@ -6,6 +7,20 @@ async getAllDrinks(db,id){
     let userWineTable = await db.select('*').from('wine').where('user_id',id);
     let userLiquorTable = await db.select('*').from('liquor').where('user_id',id);
     let userBingeTable = await db.select('*').from('binge').where('user_id',id);
+
+    //do not send "submitted" or "user_id" not needed
+    //probably will have to select each specific one from each table.
+    delete userBeerTable[0].submitted
+    delete userCocktailTable[0].submitted
+    delete userWineTable[0].submitted
+    delete userLiquorTable[0].submitted
+    delete userBingeTable[0].submitted
+
+    delete userBeerTable[0].user_id
+    delete userCocktailTable[0].user_id
+    delete userWineTable[0].user_id
+    delete userLiquorTable[0].user_id
+    delete userBingeTable[0].user_id
 
     const allDrinkTables = {
         beerTable: userBeerTable[0],

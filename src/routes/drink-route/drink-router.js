@@ -45,7 +45,7 @@ DrinkRouter
         //we need to return something else, otherwise we get a 500 server error
         //on the client side due to trying to post again.
         //if "already created" just return nothing.
-        if(initialPostCreated) return;
+        if(initialPostCreated) return initialPostCreated;
 
         res.status(201)
         .json(DrinkService.serializeBeer(drinkItem));
@@ -55,6 +55,7 @@ DrinkRouter
 DrinkRouter
     .patch('/patch/beer', (req,res,next) => {
         const updateDrink = req.body;
+        console.log("patch ten percent",updateDrink)
         DrinkService.patchBeerDrink(
             req.app.get('db'),
             {...updateDrink, submitted: createTimeStamp()}
