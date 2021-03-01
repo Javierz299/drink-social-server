@@ -20,13 +20,18 @@ app.use((error,req,res,next) => {
 
 const db = knex({
     client:  'pg',
-    connection: {
-        host: 'localhost',
-        user: 'postgres',
-        password: '',
-        database: 'drink-social'
-    }
+    connection: DATABASE_URL
 })
+
+// const db = knex({
+//     client:  'pg',
+//     connection: {
+//         host: 'localhost',
+//         user: 'postgres',
+//         password: '',
+//         database: 'drink-social'
+//     }
+// })
 
 app.set('db',db)
 
