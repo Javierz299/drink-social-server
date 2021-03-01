@@ -4,7 +4,6 @@ const UserService = {
         //check db if email exits
         let value = await db.select('id','email').from('user').where('email',newUser.email)
         let emailValue = "";
-        console.log('VALUE',value)
         //if value contains user in arr then get email if not log()
         if(value.length){
             emailValue = await value[0].email;
@@ -13,10 +12,8 @@ const UserService = {
         //is the same as db email
         if(emailValue)
             if(newUser.email === emailValue){
-                console.log('user with that email exists',value[0])
                 return value[0]
             }
-        console.log("add new user")
         return db
             .insert(newUser)
             .into('user')

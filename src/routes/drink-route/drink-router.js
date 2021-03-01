@@ -18,12 +18,12 @@ DrinkRouter
             id
         )
         .then(result => {
-            console.log("get all drinks", result)
+            //console.log("get all drinks", result)
             if(!result){
-                console.log("no result")
+                //console.log("no result")
                 res.status(404).send({error: 'no drinks found'})
             }
-            console.log('RES,drink-router',result)
+            //console.log('RES,drink-router',result)
             res.json(result)
         });
         next()
@@ -55,7 +55,6 @@ DrinkRouter
 DrinkRouter
     .patch('/patch/beer', (req,res,next) => {
         const updateDrink = req.body;
-        console.log("patch ten percent",updateDrink)
         DrinkService.patchBeerDrink(
             req.app.get('db'),
             {...updateDrink, submitted: createTimeStamp()}
@@ -136,7 +135,6 @@ DrinkRouter
         // add new drink to db
         const newDrink = req.body
         const newDrinkwTimeStamp = {...newDrink, submitted: createTimeStamp()}
-        console.log('liquor route ', newDrinkwTimeStamp)
         const drinkItem = DrinkService.insertLiquorDrink(
             req.app.get('db'),
             newDrinkwTimeStamp

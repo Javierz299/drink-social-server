@@ -40,12 +40,12 @@ async getAllDrinks(db,id){
         //beer table should have found current users initial post
         //there for return already created
         if(beer_table.length){
-            console.log("beer already created")
+            //console.log("beer already created")
             return {initialPost: "already created"}
         }
 
         if(!beer_table.length){
-             console.log("initialPost")
+             //console.log("initialPost")
              return db
                 .insert(newDrink)
                 .into('beer')
@@ -75,7 +75,6 @@ async getAllDrinks(db,id){
         }
     },
     async patchBeerDrink(db,userDrink){
-        console.log("patch",userDrink)
         return await db
         .select(userDrink.userDrinkItem)
         .from('beer')
@@ -93,12 +92,10 @@ async getAllDrinks(db,id){
         //beer table should have found current users initial post
         //there for return already created
         if(cocktail_table.length){
-            console.log('cocktail already created')
             return {initialPost: "already created"}
         }
 
         if(!cocktail_table.length){
-             console.log("initialPost")
              return db
                 .insert(newDrink)
                 .into('cocktail')
@@ -124,7 +121,6 @@ async getAllDrinks(db,id){
         }
     },
     async patchCocktailDrink(db,userDrink){
-        console.log("patch",userDrink)
         return await db
         .select(userDrink.userDrinkItem)
         .from('cocktail')
@@ -142,12 +138,10 @@ async getAllDrinks(db,id){
         //beer table should have found current users initial post
         //there for return already created
         if(wine_table.length){
-            console.log('wine already created')
             return {initialPost: "already created"}
         }
 
         if(!wine_table.length){
-             console.log("initialPost")
              return db
                 .insert(newDrink)
                 .into('wine')
@@ -166,7 +160,6 @@ async getAllDrinks(db,id){
         }
     },
     async patchWineDrink(db,userDrink){
-        console.log("patch",userDrink)
         return await db
         .select(userDrink.userDrinkItem)
         .from('wine')
@@ -184,12 +177,10 @@ async getAllDrinks(db,id){
         //beer table should have found current users initial post
         //there for return already created
         if(liquor_table.length){
-            console.log('liquor already created')
             return {initialPost: "already created"}
         }
 
         if(!liquor_table.length){
-             console.log("initialPost")
              return db
                 .insert(newDrink)
                 .into('liquor')
@@ -198,7 +189,6 @@ async getAllDrinks(db,id){
          }
     },
     serializeLiquor(drink){
-        console.log("serialize liquor",drink)
         return {
             user_id: drink.user_id,
             tequila_shot: drink.tequila_shot,
@@ -211,7 +201,6 @@ async getAllDrinks(db,id){
         }
     },
     async patchLiquorDrink(db,userDrink){
-        console.log("patch",userDrink)
         return await db
         .select(userDrink.userDrinkItem)
         .from('liquor')
@@ -229,12 +218,10 @@ async getAllDrinks(db,id){
         //beer table should have found current users initial post
         //there for return already created
         if(binge_table.length){
-            console.log('binge already created')
             return {initialPost: "already created"}
         }
 
         if(!binge_table.length){
-             console.log("initialPost",newDrink)
              return db
                 .insert(newDrink)
                 .into('binge')
@@ -252,7 +239,6 @@ async getAllDrinks(db,id){
         }
     },
     async patchBingeDrink(db,userDrink){
-        console.log("patch",userDrink)
         return await db
         .select(userDrink.userDrinkItem)
         .from('binge')

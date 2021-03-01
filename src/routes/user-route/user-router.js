@@ -33,16 +33,13 @@ UserRouter
 UserRouter
     .get('/get/userid/:email', async (req,res,next) => {
         const { email } = req.params;
-        console.log("get id",email)
        await UserService.getUserId(req.app.get('db'),email)
             .then(result => {
                 if(!result){
-                    console.log('no result')
                     res.status(404).send({
                         error: 'user not found'
                     })
                 }
-                console.log("RES",result)
                 res.json(result)
             })
         next()
