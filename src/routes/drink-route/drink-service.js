@@ -10,7 +10,7 @@ async getAllDrinks(db,id){
     console.log('beerTable',userBeerTable)
 
     if(userBeerTable.length){
-        console.log('delete submitted')
+        console.log('delete submitted',userBeerTable.length)
         delete await userBeerTable[0].submitted
         delete await userCocktailTable[0].submitted
         delete await userWineTable[0].submitted
