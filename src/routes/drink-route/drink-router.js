@@ -43,7 +43,7 @@ DrinkRouter
             newDrinkwTimeStamp
         );
 
-        let initialPostCreated = drinkItem.then(res => res.initialPost)
+        let initialPostCreated = drinkItem.then(result => result.initialPost).catch((e) => console.log("initial post",e))
         //we need to return something else, otherwise we get a 500 server error
         //on the client side due to trying to post again.
         //if "already created" just return nothing.
@@ -79,7 +79,7 @@ DrinkRouter
             newDrinkwTimeStamp
         );
 
-        let initialPostCreated = drinkItem.then(res => res.initialPost)
+        let initialPostCreated = drinkItem.then(result => result.initialPost).catch((e) => console.log("initial post",e))
         //we need to return something else, otherwise we get a 500 server error
         //on the client side due to trying to post again.
         //if "already created" just return nothing.
@@ -116,7 +116,7 @@ DrinkRouter
             newDrinkwTimeStamp
         );
 
-        let initialPostCreated = drinkItem.then(res => res.initialPost)
+        let initialPostCreated = drinkItem.then(result => result.initialPost).catch((e) => console.log("initial post",e))
         //we need to return something else, otherwise we get a 500 server error
         //on the client side due to trying to post again.
         //if "already created" just return nothing.
@@ -152,7 +152,7 @@ DrinkRouter
             newDrinkwTimeStamp
         );
 
-        let initialPostCreated = drinkItem.then(res => res.initialPost)
+        let initialPostCreated = drinkItem.then(result => result.initialPost).catch((e) => console.log("initial post",e))
         //we need to return something else, otherwise we get a 500 server error
         //on the client side due to trying to post again.
         //if "already created" just return nothing.
@@ -189,7 +189,7 @@ DrinkRouter
             newDrinkwTimeStamp
         );
 
-        let initialPostCreated = drinkItem.then(res => res.initialPost)
+        let initialPostCreated = drinkItem.then(result => result.initialPost).catch((e) => console.log("initial post",e))
         //we need to return something else, otherwise we get a 500 server error
         //on the client side due to trying to post again.
         //if "already created" just return nothing.
