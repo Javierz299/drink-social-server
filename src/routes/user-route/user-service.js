@@ -11,10 +11,11 @@ const UserService = {
         }
         // if email , then check if incoming email 
         //is the same as db email
-        if(emailValue)
+        if(emailValue){
             if(newUser.email === emailValue){
                 return value[0]
             }
+        }
             console.log('INSERT VALUE',value)
         return db
             .insert(newUser)
