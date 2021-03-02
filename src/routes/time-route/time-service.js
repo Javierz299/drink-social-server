@@ -1,6 +1,6 @@
 const TimeService = {
     async getTimeStamp(db){
-        return db
+        return await db
             .select('created')
             .from('user')
     }
