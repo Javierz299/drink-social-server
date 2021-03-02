@@ -1,6 +1,7 @@
 
 const UserService = {
     async insertUser(db,newUser){
+        console.log("reached userService")
         //check db if email exits
         let value = await db.select('id','email').from('user').where('email',newUser.email)
         let emailValue = "";
@@ -14,6 +15,7 @@ const UserService = {
             if(newUser.email === emailValue){
                 return value[0]
             }
+            console.log('INSERT VALUE',value)
         return db
             .insert(newUser)
             .into('user')

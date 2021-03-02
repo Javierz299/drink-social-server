@@ -17,6 +17,7 @@ TimeRouter
                 }
                 res.json(result[0].created)
             })
+            .catch((e) => console.log("getTime",e))
             next()
     })
 
