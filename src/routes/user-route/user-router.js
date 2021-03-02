@@ -25,7 +25,8 @@ UserRouter
         )
         res.status(201)
         .json(UserService.serializeUser(user))
- 
+        .catch((e) => console.log("post/userProfile",e))
+
         next()
 
 })
@@ -42,6 +43,7 @@ UserRouter
                 }
                 res.json(result)
             })
+            .catch((e) => console.log("get/userid",e))
         next()
 });
 

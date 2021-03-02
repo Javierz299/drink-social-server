@@ -25,7 +25,9 @@ DrinkRouter
             }
             //console.log('RES,drink-router',result)
             res.json(result)
-        });
+        })
+        .catch((e) => console.log("get/allDrinks",e))
+
         next()
 });
 
@@ -48,7 +50,8 @@ DrinkRouter
         if(initialPostCreated) return initialPostCreated;
 
         res.status(201)
-        .json(DrinkService.serializeBeer(drinkItem));
+        .json(DrinkService.serializeBeer(drinkItem))
+        .catch((e) => console.log("post",e))
  
         next();
 });
@@ -60,7 +63,9 @@ DrinkRouter
             {...updateDrink, submitted: createTimeStamp()}
         );
         
-        res.status(204).end();
+        res.status(204).end()
+        .catch((e) => console.log("post",e))
+
 });
 ///////// COCKTAIL ENDPOINT ///////////////
 DrinkRouter
@@ -81,7 +86,9 @@ DrinkRouter
         if(initialPostCreated) return;
 
         res.status(201)
-        .json(DrinkService.serializeCocktail(drinkItem));
+        .json(DrinkService.serializeCocktail(drinkItem))
+        .catch((e) => console.log("post",e))
+
  
         next();
 });
@@ -93,7 +100,9 @@ DrinkRouter
             {...updateDrink, submitted: createTimeStamp()}
         );
         
-        res.status(204).end();
+        res.status(204).end()
+        .catch((e) => console.log("patch",e))
+
 });
 ///////// WINE ENDPOINT ///////////////
 DrinkRouter
@@ -114,8 +123,9 @@ DrinkRouter
         if(initialPostCreated) return;
 
         res.status(201)
-        .json(DrinkService.serializeWine(drinkItem));
- 
+        .json(DrinkService.serializeWine(drinkItem))
+        .catch((e) => console.log("post",e))
+
         next();
 
 });
@@ -127,7 +137,9 @@ DrinkRouter
             {...updateDrink, submitted: createTimeStamp()}
         );
         
-        res.status(204).end();
+        res.status(204).end()
+        .catch((e) => console.log("patch",e))
+
 });
 ///////// LIQUOR ENDPOINT ///////////////
 DrinkRouter
@@ -147,7 +159,9 @@ DrinkRouter
         if(initialPostCreated) return;
 
         res.status(201)
-        .json(DrinkService.serializeLiquor(drinkItem));
+        .json(DrinkService.serializeLiquor(drinkItem))
+        .catch((e) => console.log("post",e))
+
  
         next();
 
@@ -160,7 +174,9 @@ DrinkRouter
             {...updateDrink, submitted: createTimeStamp()}
         );
         
-        res.status(204).end();
+        res.status(204).end()
+        .catch((e) => console.log("patch",e))
+
 });
 ///////// BINGE ENDPOINT ///////////////
 DrinkRouter
@@ -180,7 +196,9 @@ DrinkRouter
         if(initialPostCreated) return;
 
         res.status(201)
-        .json(DrinkService.serializeBinge(drinkItem));
+        .json(DrinkService.serializeBinge(drinkItem))
+        .catch((e) => console.log("post",e))
+
  
         next();
 
@@ -193,7 +211,9 @@ DrinkRouter
             {...updateDrink, submitted: createTimeStamp()}
         );
         
-        res.status(204).end();
+        res.status(204).end()
+        .catch((e) => console.log("patch",e))
+
 });
 
 
