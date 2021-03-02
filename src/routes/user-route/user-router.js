@@ -23,11 +23,9 @@ UserRouter
             req.app.get('db'),
             newUser
         )
-        res.status(201)
-        .json(UserService.serializeUser(user))
-        .catch((e) => console.log("post/userProfile",e))
+        res.status(201).json(UserService.serializeUser(user));
 
-        next()
+        next();
 
 })
 
