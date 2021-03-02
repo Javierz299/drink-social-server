@@ -11,17 +11,17 @@ async getAllDrinks(db,id){
 
     if(userBeerTable.length){
         console.log('delete submitted',userBeerTable.length)
-        delete await userBeerTable[0].submitted
-        delete await userCocktailTable[0].submitted
-        delete await userWineTable[0].submitted
-        delete await userLiquorTable[0].submitted
-        delete await userBingeTable[0].submitted
+        delete userBeerTable[0].submitted
+        delete userCocktailTable[0].submitted
+        delete userWineTable[0].submitted
+        delete userLiquorTable[0].submitted
+        delete userBingeTable[0].submitted
     
-        delete await userBeerTable[0].user_id
-        delete await userCocktailTable[0].user_id
-        delete await userWineTable[0].user_id
-        delete await userLiquorTable[0].user_id
-        delete await userBingeTable[0].user_id
+        delete userBeerTable[0].user_id
+        delete userCocktailTable[0].user_id
+        delete userWineTable[0].user_id
+        delete userLiquorTable[0].user_id
+        delete userBingeTable[0].user_id
     
     } else {
         console.log("else send empty {}")
