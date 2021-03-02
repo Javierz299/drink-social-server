@@ -9,7 +9,7 @@ async getAllDrinks(db,id){
     let userBingeTable = await db.select('*').from('binge').where('user_id',id);
     console.log('beerTable',userBeerTable)
 
-    if(!userBeerTable.length){
+    if(userBeerTable.length){
         console.log('delete submitted')
         delete await userBeerTable[0].submitted
         delete await userCocktailTable[0].submitted
