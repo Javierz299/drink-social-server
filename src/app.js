@@ -4,7 +4,7 @@ const UserRouter = require('./routes/user-route/user-router');
 const TimeRouter = require('./routes/time-route/time-router');
 const DrinkRouter = require('./routes/drink-route/drink-router');
 require('dotenv').config();
-
+process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 const cors = require('cors');
 const morgan = require('morgan');
 const helmet = require('helmet');
