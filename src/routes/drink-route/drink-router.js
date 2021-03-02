@@ -18,7 +18,7 @@ DrinkRouter
             id
         )
         .then(result => {
-            //console.log("get all drinks", result)
+            console.log("get all drinks", result)
             if(!result){
                 //console.log("no result")
                 res.status(404).send({error: 'no drinks found'})

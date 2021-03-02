@@ -10,6 +10,7 @@ async getAllDrinks(db,id){
     console.log('beerTable',userBeerTable)
 
     if(!userBeerTable.length){
+        console.log('delete submitted')
         delete await userBeerTable[0].submitted
         delete await userCocktailTable[0].submitted
         delete await userWineTable[0].submitted
@@ -23,6 +24,7 @@ async getAllDrinks(db,id){
         delete await userBingeTable[0].user_id
     
     } else {
+        console.log("else send empty {}")
         return {};
     }
     //do not send "submitted" or "user_id" not needed
