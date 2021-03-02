@@ -25,7 +25,7 @@ UserRouter
         )
         res.status(201)
         .json(UserService.serializeUser(user))
-        //.catch((e) => console.log("post/userProfile",e))
+        .catch((e) => console.log("post/userProfile",e))
 
         next()
 
@@ -37,6 +37,7 @@ UserRouter
         console.log("get userID",email)
        await UserService.getUserId(req.app.get('db'),email)
             .then(result => {
+                console.log("get reached")
                 if(!result){
                     res.status(404).send({
                         error: 'user not found'
