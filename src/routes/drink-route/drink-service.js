@@ -7,7 +7,7 @@ async getAllDrinks(db,id){
     let userWineTable = await db.select('*').from('wine').where('user_id',id);
     let userLiquorTable = await db.select('*').from('liquor').where('user_id',id);
     let userBingeTable = await db.select('*').from('binge').where('user_id',id);
-    console.log(userBeerTable)
+    console.log('beerTable',userBeerTable)
 
     if(!userBeerTable.length){
         delete await userBeerTable[0].submitted
@@ -23,7 +23,7 @@ async getAllDrinks(db,id){
         delete await userBingeTable[0].user_id
     
     } else {
-        return;
+        return {};
     }
     //do not send "submitted" or "user_id" not needed
     //probably will have to select each specific one from each table.
