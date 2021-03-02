@@ -25,7 +25,7 @@ UserRouter
         )
         res.status(201)
         .json(UserService.serializeUser(user))
-        .catch((e) => console.log("post/userProfile",e))
+        //.catch((e) => console.log("post/userProfile",e))
 
         next()
 
