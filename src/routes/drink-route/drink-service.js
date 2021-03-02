@@ -29,6 +29,7 @@ async getAllDrinks(db,id){
         liquorTable: userLiquorTable[0],
         bingeTable: userBingeTable[0]
     }
+    console.log(allDrinkTables)
     return allDrinkTables;
 },
 
