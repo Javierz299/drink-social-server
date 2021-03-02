@@ -25,11 +25,8 @@ const db = knex({
         user: 'tpicoklvgbcetc',
         password: '85fa17e2852d2998d6fbb50a27110f2986a0f027acc92e93ef354bcb3b273878',
         database: 'd2e5j53020b0rd',
-        ssl: true,
-        extra: {
-            ssl: {
+        ssl: {
             rejectUnauthorized: false,
-            },
         },
     }
 })
