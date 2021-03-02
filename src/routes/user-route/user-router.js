@@ -23,7 +23,7 @@ UserRouter
             req.app.get('db'),
             newUser
         )
-        console.log("USER",user)
+        console.log("USER",user.then(result => console.log("result",result)))
         res.status(201).json(UserService.serializeUser(user));
 
         next();
