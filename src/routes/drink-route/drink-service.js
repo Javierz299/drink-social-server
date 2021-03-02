@@ -41,7 +41,7 @@ async getAllDrinks(db,id){
         //there for return already created
         if(beer_table.length){
             //console.log("beer already created")
-            return {initialPost: "already created"}
+            return; //{initialPost: "already created"}
         }
 
         if(!beer_table.length){
@@ -92,7 +92,7 @@ async getAllDrinks(db,id){
         //beer table should have found current users initial post
         //there for return already created
         if(cocktail_table.length){
-            return {initialPost: "already created"}
+            return; //{initialPost: "already created"}
         }
 
         if(!cocktail_table.length){
@@ -138,7 +138,7 @@ async getAllDrinks(db,id){
         //beer table should have found current users initial post
         //there for return already created
         if(wine_table.length){
-            return {initialPost: "already created"}
+            return; //{initialPost: "already created"}
         }
 
         if(!wine_table.length){
@@ -177,7 +177,7 @@ async getAllDrinks(db,id){
         //beer table should have found current users initial post
         //there for return already created
         if(liquor_table.length){
-            return {initialPost: "already created"}
+            return; //{initialPost: "already created"}
         }
 
         if(!liquor_table.length){
@@ -218,7 +218,7 @@ async getAllDrinks(db,id){
         //beer table should have found current users initial post
         //there for return already created
         if(binge_table.length){
-            return {initialPost: "already created"}
+            return; //{initialPost: "already created"}
         }
 
         if(!binge_table.length){
