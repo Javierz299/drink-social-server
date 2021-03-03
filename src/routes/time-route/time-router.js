@@ -11,13 +11,13 @@ TimeRouter
             .then(result => {
                 createTimeStamp(result[0].created)
                 if(!result){
-                    console.log('no result??')
                     res.status(404).send({
                         error: 'no date result'
                     })
                 }
                 res.json(result[0].created)
             })
+            .catch((e) => console.log("getTime",e))
             next()
     })
 
