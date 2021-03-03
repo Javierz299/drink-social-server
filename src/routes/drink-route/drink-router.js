@@ -18,17 +18,14 @@ DrinkRouter
             id
         )
         .then(result => {
-            console.log("get all drinks", result)
             if(!result){
-                //console.log("no result")
                 res.status(404).send({error: 'no drinks found'})
             }
-            //console.log('RES,drink-router',result)
             res.json(result)
         })
-        .catch((e) => console.log("get/allDrinks",e))
+        .catch((e) => console.log("get allDrinks Route",e))
 
-        next()
+        next();
 });
 
 ////////  BEER ENDPOINT //////////////////
@@ -43,15 +40,9 @@ DrinkRouter
             newDrinkwTimeStamp
         );
 
-        //let initialPostCreated = drinkItem.then(result => result.initialPost).catch((e) => console.log("initial post",e))
-        //we need to return something else, otherwise we get a 500 server error
-        //on the client side due to trying to post again.
-        //if "already created" just return nothing.
-        //if(initialPostCreated) return initialPostCreated;
-
         res.status(201)
         .json(DrinkService.serializeBeer(drinkItem))
-        .catch((e) => console.log("post",e))
+        .catch((e) => console.log("post Beer Route",e))
  
         next();
 });
@@ -64,7 +55,7 @@ DrinkRouter
         );
         
         res.status(204).end()
-        .catch((e) => console.log("post",e))
+        .catch((e) => console.log("patch Beer Route",e))
 
 });
 ///////// COCKTAIL ENDPOINT ///////////////
@@ -79,15 +70,9 @@ DrinkRouter
             newDrinkwTimeStamp
         );
 
-        //let initialPostCreated = drinkItem.then(result => result.initialPost).catch((e) => console.log("initial post",e))
-        //we need to return something else, otherwise we get a 500 server error
-        //on the client side due to trying to post again.
-        //if "already created" just return nothing.
-        //if(initialPostCreated) return;
-
         res.status(201)
         .json(DrinkService.serializeCocktail(drinkItem))
-        .catch((e) => console.log("post",e))
+        .catch((e) => console.log("post Cocktail Route",e))
 
  
         next();
@@ -101,7 +86,7 @@ DrinkRouter
         );
         
         res.status(204).end()
-        .catch((e) => console.log("patch",e))
+        .catch((e) => console.log("patch Cocktail Route",e))
 
 });
 ///////// WINE ENDPOINT ///////////////
@@ -116,15 +101,9 @@ DrinkRouter
             newDrinkwTimeStamp
         );
 
-        //let initialPostCreated = drinkItem.then(result => result.initialPost).catch((e) => console.log("initial post",e))
-        //we need to return something else, otherwise we get a 500 server error
-        //on the client side due to trying to post again.
-        //if "already created" just return nothing.
-        //if(initialPostCreated) return;
-
         res.status(201)
         .json(DrinkService.serializeWine(drinkItem))
-        .catch((e) => console.log("post",e))
+        .catch((e) => console.log("post Wine Route",e))
 
         next();
 
@@ -138,7 +117,7 @@ DrinkRouter
         );
         
         res.status(204).end()
-        .catch((e) => console.log("patch",e))
+        .catch((e) => console.log("patch Wine Route",e))
 
 });
 ///////// LIQUOR ENDPOINT ///////////////
@@ -152,15 +131,9 @@ DrinkRouter
             newDrinkwTimeStamp
         );
 
-        //let initialPostCreated = drinkItem.then(result => result.initialPost).catch((e) => console.log("initial post",e))
-        //we need to return something else, otherwise we get a 500 server error
-        //on the client side due to trying to post again.
-        //if "already created" just return nothing.
-        //if(initialPostCreated) return;
-
         res.status(201)
         .json(DrinkService.serializeLiquor(drinkItem))
-        .catch((e) => console.log("post",e))
+        .catch((e) => console.log("post Liquor Route",e))
 
  
         next();
@@ -175,7 +148,7 @@ DrinkRouter
         );
         
         res.status(204).end()
-        .catch((e) => console.log("patch",e))
+        .catch((e) => console.log("patch Liquore Route",e))
 
 });
 ///////// BINGE ENDPOINT ///////////////
@@ -189,15 +162,9 @@ DrinkRouter
             newDrinkwTimeStamp
         );
 
-        //let initialPostCreated = drinkItem.then(result => result.initialPost).catch((e) => console.log("initial post",e))
-        //we need to return something else, otherwise we get a 500 server error
-        //on the client side due to trying to post again.
-        //if "already created" just return nothing.
-        //if(initialPostCreated) return;
-
         res.status(201)
         .json(DrinkService.serializeBinge(drinkItem))
-        .catch((e) => console.log("post",e))
+        .catch((e) => console.log("post Binge Route",e))
 
  
         next();
@@ -212,7 +179,7 @@ DrinkRouter
         );
         
         res.status(204).end()
-        .catch((e) => console.log("patch",e))
+        .catch((e) => console.log("patch Binge Route",e))
 
 });
 

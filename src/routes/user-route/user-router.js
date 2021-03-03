@@ -12,7 +12,6 @@ UserRouter
     .post('/post/userprofile', (req,res,next) => { 
         // add new user to db
         const { name, email } = req.body
-        console.log("POST REQ BODY",req.body);
         const newUser = {
             username: name,
             email,
@@ -23,7 +22,6 @@ UserRouter
             req.app.get('db'),
             newUser
         )
-        console.log("USER",user.then(result => console.log("result",result)))
         res.status(201).json(UserService.serializeUser(user));
 
         next();
@@ -33,10 +31,8 @@ UserRouter
 UserRouter
     .get('/get/userid/:email', async (req,res,next) => {
         const { email } = req.params;
-        console.log("get userID",email)
        await UserService.getUserId(req.app.get('db'),email)
             .then(result => {
-                console.log("get reached")
                 if(!result){
                     res.status(404).send({
                         error: 'user not found'
@@ -44,7 +40,7 @@ UserRouter
                 }
                 res.json(result)
             })
-            .catch((e) => console.log("get/userid",e))
+            .catch((e) => console.log("get userid route",e))
         next()
 });
 

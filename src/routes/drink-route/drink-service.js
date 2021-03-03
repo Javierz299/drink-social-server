@@ -7,10 +7,10 @@ async getAllDrinks(db,id){
     let userWineTable = await db.select('*').from('wine').where('user_id',id);
     let userLiquorTable = await db.select('*').from('liquor').where('user_id',id);
     let userBingeTable = await db.select('*').from('binge').where('user_id',id);
-    console.log('beerTable',userBeerTable)
 
+    //do not send "submitted" or "user_id" not needed
+    //probably will have to select each specific one from each table.
     if(userBeerTable.length){
-        console.log('delete submitted',userBeerTable.length)
         delete userBeerTable[0].submitted
         delete userCocktailTable[0].submitted
         delete userWineTable[0].submitted
@@ -22,14 +22,10 @@ async getAllDrinks(db,id){
         delete userWineTable[0].user_id
         delete userLiquorTable[0].user_id
         delete userBingeTable[0].user_id
-    
     } else {
-        console.log("else send empty {}")
         return {};
-    }
-    //do not send "submitted" or "user_id" not needed
-    //probably will have to select each specific one from each table.
-
+    };
+    
     const allDrinkTables = {
         beerTable: userBeerTable[0],
         cocktailTable: userCocktailTable[0],
@@ -37,7 +33,6 @@ async getAllDrinks(db,id){
         liquorTable: userLiquorTable[0],
         bingeTable: userBingeTable[0]
     }
-    console.log(allDrinkTables)
     return allDrinkTables;
 },
 
@@ -96,7 +91,6 @@ async getAllDrinks(db,id){
     async insertCocktailDrink(db,newDrink){
         //check db table "beer" if there is an intial post
         let cocktail_table = await db.select('*').from("cocktail").where('user_id',newDrink.user_id);
-        //console.log('cocktail_table',cocktial_table[0])
 
         //beer table should have found current users initial post
         //there for return already created
@@ -142,7 +136,6 @@ async getAllDrinks(db,id){
     async insertWineDrink(db,newDrink){
         //check db table "beer" if there is an intial post
         let wine_table = await db.select('*').from("wine").where('user_id',newDrink.user_id);
-        //console.log('cocktail_table',cocktial_table[0])
 
         //beer table should have found current users initial post
         //there for return already created
@@ -181,7 +174,6 @@ async getAllDrinks(db,id){
     async insertLiquorDrink(db,newDrink){
         //check db table "beer" if there is an intial post
         let liquor_table = await db.select('*').from("liquor").where('user_id',newDrink.user_id);
-        //console.log('cocktail_table',cocktial_table[0])
 
         //beer table should have found current users initial post
         //there for return already created
@@ -222,7 +214,6 @@ async getAllDrinks(db,id){
     async insertBingeDrink(db,newDrink){
         //check db table "beer" if there is an intial post
         let binge_table = await db.select('*').from("binge").where('user_id',newDrink.user_id);
-        //console.log('cocktail_table',cocktial_table[0])
 
         //beer table should have found current users initial post
         //there for return already created
