@@ -1,5 +1,4 @@
 const express = require('express');
-const createTimeStamp = require('../../utils/createTimeStamp');
 const DrinkService = require('./drink-service');
 
 const DrinkRouter = express.Router();
@@ -33,11 +32,10 @@ DrinkRouter
     .post('/post/userBeerItem', (req,res,next) => { 
         // add new drink to db
         const newDrink = req.body
-        const newDrinkwTimeStamp = {...newDrink, submitted: createTimeStamp()}
     
         const drinkItem = DrinkService.insertBeerDrink(
             req.app.get('db'),
-            newDrinkwTimeStamp
+            newDrink
         );
 
         res.status(201)
@@ -51,7 +49,7 @@ DrinkRouter
         const updateDrink = req.body;
         DrinkService.patchBeerDrink(
             req.app.get('db'),
-            {...updateDrink, submitted: createTimeStamp()}
+            {...updateDrink}
         );
         
         res.status(204).end()
@@ -63,11 +61,10 @@ DrinkRouter
     .post('/post/userCocktailItem', (req,res,next) => { 
         // add new drink to db
         const newDrink = req.body
-        const newDrinkwTimeStamp = {...newDrink, submitted: createTimeStamp()}
     
         const drinkItem = DrinkService.insertCocktailDrink(
             req.app.get('db'),
-            newDrinkwTimeStamp
+            newDrink
         );
 
         res.status(201)
@@ -82,7 +79,7 @@ DrinkRouter
         const updateDrink = req.body;
         DrinkService.patchCocktailDrink(
             req.app.get('db'),
-            {...updateDrink, submitted: createTimeStamp()}
+            {...updateDrink}
         );
         
         res.status(204).end()
@@ -94,11 +91,10 @@ DrinkRouter
     .post('/post/userWineItem', (req,res,next) => { 
         // add new drink to db
         const newDrink = req.body
-        const newDrinkwTimeStamp = {...newDrink, submitted: createTimeStamp()}
     
         const drinkItem = DrinkService.insertWineDrink(
             req.app.get('db'),
-            newDrinkwTimeStamp
+            newDrink
         );
 
         res.status(201)
@@ -113,7 +109,7 @@ DrinkRouter
         const updateDrink = req.body;
         DrinkService.patchWineDrink(
             req.app.get('db'),
-            {...updateDrink, submitted: createTimeStamp()}
+            {...updateDrink}
         );
         
         res.status(204).end()
@@ -125,10 +121,9 @@ DrinkRouter
     .post('/post/userLiquorItem', (req,res,next) => { 
         // add new drink to db
         const newDrink = req.body
-        const newDrinkwTimeStamp = {...newDrink, submitted: createTimeStamp()}
         const drinkItem = DrinkService.insertLiquorDrink(
             req.app.get('db'),
-            newDrinkwTimeStamp
+            newDrink
         );
 
         res.status(201)
@@ -144,7 +139,7 @@ DrinkRouter
         const updateDrink = req.body;
         DrinkService.patchLiquorDrink(
             req.app.get('db'),
-            {...updateDrink, submitted: createTimeStamp()}
+            {...updateDrink}
         );
         
         res.status(204).end()
@@ -156,10 +151,9 @@ DrinkRouter
     .post('/post/userBingeItem', (req,res,next) => { 
         // add new drink to db
         const newDrink = req.body
-        const newDrinkwTimeStamp = {...newDrink, submitted: createTimeStamp()}
         const drinkItem = DrinkService.insertBingeDrink(
             req.app.get('db'),
-            newDrinkwTimeStamp
+            newDrink
         );
 
         res.status(201)
@@ -175,7 +169,7 @@ DrinkRouter
         const updateDrink = req.body;
         DrinkService.patchBingeDrink(
             req.app.get('db'),
-            {...updateDrink, submitted: createTimeStamp()}
+            {...updateDrink}
         );
         
         res.status(204).end()

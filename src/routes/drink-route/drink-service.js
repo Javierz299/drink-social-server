@@ -12,12 +12,6 @@ async getAllDrinks(db,id){
     //probably will have to select each specific one from each table.
     if(userBeerTable.length){
         console.log("get all drinks table",userBeerTable)
-        delete userBeerTable[0].submitted
-        delete userCocktailTable[0].submitted
-        delete userWineTable[0].submitted
-        delete userLiquorTable[0].submitted
-        delete userBingeTable[0].submitted
-    
         delete userBeerTable[0].user_id
         delete userCocktailTable[0].user_id
         delete userWineTable[0].user_id
@@ -76,7 +70,6 @@ async getAllDrinks(db,id){
             eight_percent: drink.eight_percent,
             nine_percent: drink.nine_percent,
             ten_percent: drink.ten_percent,
-            submitted: drink.submitted
         }
     },
     async patchBeerDrink(db,userDrink){
@@ -121,7 +114,6 @@ async getAllDrinks(db,id){
             daiquiri: drink.daiquiri,
             long_island: drink.long_island,
             misc: drink.misc,
-            submitted: drink.submitted
         }
     },
     async patchCocktailDrink(db,userDrink){
@@ -159,7 +151,6 @@ async getAllDrinks(db,id){
             white_wine: drink.white_wine,
             sangria: drink.sangria,
             champagne: drink.champagne,
-            submitted: drink.submitted
         }
     },
     async patchWineDrink(db,userDrink){
@@ -199,7 +190,6 @@ async getAllDrinks(db,id){
             bourbon: drink.bourbon,
             scotch: drink.scotch,
             brandy: drink.brandy,
-            submitted: drink.submitted
         }
     },
     async patchLiquorDrink(db,userDrink){
@@ -236,7 +226,6 @@ async getAllDrinks(db,id){
             beer_bong: drink.beer_bong,
             shotgun: drink.shotgun,
             boilermaker: drink.boilermaker,
-            submitted: drink.submitted
         }
     },
     async patchBingeDrink(db,userDrink){
