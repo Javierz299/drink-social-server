@@ -77,7 +77,7 @@ async getAllDrinks(db,id){
         .select(userDrink.userDrinkItem)
         .from('beer')
         .where('user_id',userDrink.dbUserId)
-        .update({'submitted': userDrink.submitted})
+        .increment('total',1)
         .increment(userDrink.userDrinkItem, 1)
     },
 
@@ -238,4 +238,4 @@ async getAllDrinks(db,id){
     },
 }
 
-module.exports = DrinkService
+module.exports = DrinkService;
