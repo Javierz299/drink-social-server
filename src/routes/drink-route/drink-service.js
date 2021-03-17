@@ -8,7 +8,7 @@ async getAllDrinks(db,id){
     let userLiquorTable = await db.select('*').from('liquor').where('user_id',id);
     let userBingeTable = await db.select('*').from('binge').where('user_id',id);
 
-    //do not send "submitted" or "user_id" not needed
+    //do not send "user_id" not needed
     //probably will have to select each specific one from each table.
     if(userBeerTable.length){
         console.log("get all drinks table",userBeerTable)
