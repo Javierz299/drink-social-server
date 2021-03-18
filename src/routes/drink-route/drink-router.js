@@ -53,8 +53,7 @@ DrinkRouter
         );
         
         res.status(204).end()
-        .catch((e) => console.log("patch Beer Route",e))
-
+        //.catch((e) => console.log("patch Beer Route",e))
 });
 ///////// COCKTAIL ENDPOINT ///////////////
 DrinkRouter
@@ -83,8 +82,6 @@ DrinkRouter
         );
         
         res.status(204).end()
-        .catch((e) => console.log("patch Cocktail Route",e))
-
 });
 ///////// WINE ENDPOINT ///////////////
 DrinkRouter
@@ -113,8 +110,6 @@ DrinkRouter
         );
         
         res.status(204).end()
-        .catch((e) => console.log("patch Wine Route",e))
-
 });
 ///////// LIQUOR ENDPOINT ///////////////
 DrinkRouter
@@ -143,8 +138,6 @@ DrinkRouter
         );
         
         res.status(204).end()
-        .catch((e) => console.log("patch Liquore Route",e))
-
 });
 ///////// BINGE ENDPOINT ///////////////
 DrinkRouter
@@ -173,8 +166,6 @@ DrinkRouter
         );
         
         res.status(204).end()
-        .catch((e) => console.log("patch Binge Route",e))
-
 });
 
 

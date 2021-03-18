@@ -11,7 +11,6 @@ async getAllDrinks(db,id){
     //do not send "user_id" not needed
     //probably will have to select each specific one from each table.
     if(userBeerTable.length){
-        console.log("get all drinks table",userBeerTable)
         delete userBeerTable[0].user_id
         delete userCocktailTable[0].user_id
         delete userWineTable[0].user_id
@@ -121,7 +120,7 @@ async getAllDrinks(db,id){
         .select(userDrink.userDrinkItem)
         .from('cocktail')
         .where('user_id',userDrink.dbUserId)
-        .update({'submitted': userDrink.submitted})
+        .increment('total',1)
         .increment(userDrink.userDrinkItem, 1)
     },
 
@@ -158,7 +157,7 @@ async getAllDrinks(db,id){
         .select(userDrink.userDrinkItem)
         .from('wine')
         .where('user_id',userDrink.dbUserId)
-        .update({'submitted': userDrink.submitted})
+        .increment('total',1)
         .increment(userDrink.userDrinkItem, 1)
     },
 
@@ -197,7 +196,7 @@ async getAllDrinks(db,id){
         .select(userDrink.userDrinkItem)
         .from('liquor')
         .where('user_id',userDrink.dbUserId)
-        .update({'submitted': userDrink.submitted})
+        .increment('total',1)
         .increment(userDrink.userDrinkItem, 1)
     },
 
@@ -233,7 +232,7 @@ async getAllDrinks(db,id){
         .select(userDrink.userDrinkItem)
         .from('binge')
         .where('user_id',userDrink.dbUserId)
-        .update({'submitted': userDrink.submitted})
+        .increment('total',1)
         .increment(userDrink.userDrinkItem, 1)
     },
 }
