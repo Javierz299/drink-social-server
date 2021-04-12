@@ -4,6 +4,7 @@ const UserRouter = require('./routes/user-route/user-router');
 const TimeRouter = require('./routes/time-route/time-router');
 const DrinkRouter = require('./routes/drink-route/drink-router');
 const CumulativeDrinkRouter = require('./routes/cumulative-drinks/cumulative-drink-route');
+const FriendRouter = require('./routes/friend-route/friend-router');
 
 require('dotenv').config();
 
@@ -27,6 +28,8 @@ app.use('/api',UserRouter);
 app.use('/api',TimeRouter);
 app.use('/api',DrinkRouter);
 app.use('/api',CumulativeDrinkRouter);
+app.use('/api',FriendRouter);
+
 
 
 
