@@ -27,9 +27,8 @@ FriendRouter
         await FriendService.findFriend(req.app.get('db'),friend)
             .then(result => {
                 if(!result){
-                    console.log('no result/no user')
                     res.status(404).send({
-                        error: 'user not found'
+                        error: 'something went wrong while searching friends'
                     })
                 }
                 console.log('friend result', result)

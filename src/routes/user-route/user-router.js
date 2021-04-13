@@ -12,8 +12,9 @@ UserRouter
     .post('/post/userprofile', (req,res,next) => { 
         // add new user to db
         const { name, email } = req.body
+        const lowercaseName = name.toLowerCase()
         const newUser = {
-            username: name,
+            username: lowercaseName,
             email,
             created: createTimeStamp()
         }

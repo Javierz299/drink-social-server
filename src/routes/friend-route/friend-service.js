@@ -4,7 +4,7 @@ const FriendService = {
         let friend_name = await db.select('id','username').from('user').where('username','like',`%${friend}%`)
         console.log('friend_name',friend_name)
         if(friend_name.length === 0){
-            return {}
+            return [{id: "default",username: "no results found"}];
         }
 
         return friend_name;
