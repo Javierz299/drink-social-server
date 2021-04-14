@@ -26,7 +26,7 @@ FriendRouter
 FriendRouter
     .get('/get/friend/:friend', async (req,res,next) => {
         //name of friend
-        const { friend } = req.params
+        const { friend } = req.params;
         console.log('friend-req params',req.params)
 
         await FriendService.findFriend(req.app.get('db'),friend)
@@ -40,6 +40,24 @@ FriendRouter
                 res.json(result)
             })
             
+});
+
+FriendRouter
+    .get('/get/pending/:user', (req,res,next) => {
+        const { user } = req.params;
+        console.log("get pending params",req.params,user.user)
+
+         FriendService.getPending(req.app.get('db'),"Javier Zapien")
+            // .then(result => {
+            //     if(!result){
+            //         res.status(404).send({
+            //         error: 'something went wrong while searching pending'
+            //         })
+            //     }
+            
+            //     //res.json(result)
+            // })
+
 });
 
 module.exports = FriendRouter;

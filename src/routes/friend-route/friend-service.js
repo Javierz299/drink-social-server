@@ -1,7 +1,10 @@
 const FriendService = {
     async findFriend(db,friend){
         console.log('service',friend)
-        let friend_name = await db.select('id','username').from('user').where('username','like',`%${friend}%`)
+        let friend_name = await db.select('id','username')
+                .from('user')
+                .where('username','like',`%${friend}%`)
+
         console.log('friend_name',friend_name)
         if(friend_name.length === 0){
             return [{id: "default",username: "no results found"}];
@@ -36,6 +39,17 @@ const FriendService = {
             user: req.user,
             sent_request_to: req.sent_request_to,
         }
+    },
+    async getPending(db,user){
+        console.log("service pending",user.user)
+        const pendingRequests = await db.select('*')
+                .from('friend')
+                .where('sent_request_to',"Javier Zapien")
+                .andWhere('accepted',false)
+
+            console.log("pending requests",pendingRequests)
+
+
     },
 }
 
