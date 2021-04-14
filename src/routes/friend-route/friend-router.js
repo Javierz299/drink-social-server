@@ -45,18 +45,18 @@ FriendRouter
 FriendRouter
     .get('/get/pending/:user', (req,res,next) => {
         const { user } = req.params;
-        console.log("get pending params",req.params,user.user)
+        console.log("get pending params",req.params,user)
 
-         FriendService.getPending(req.app.get('db'),"Javier Zapien")
-            // .then(result => {
-            //     if(!result){
-            //         res.status(404).send({
-            //         error: 'something went wrong while searching pending'
-            //         })
-            //     }
+         FriendService.getPending(req.app.get('db'),user)
+            .then(result => {
+                if(!result){
+                    res.status(404).send({
+                    error: 'something went wrong while searching pending'
+                    })
+                }
             
-            //     //res.json(result)
-            // })
+                res.json(result)
+            })
 
 });
 

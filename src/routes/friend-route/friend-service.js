@@ -41,15 +41,15 @@ const FriendService = {
         }
     },
     async getPending(db,user){
-        console.log("service pending",user.user)
+        console.log("service pending",user)
         const pendingRequests = await db.select('*')
                 .from('friend')
-                .where('sent_request_to',"Javier Zapien")
+                .where('sent_request_to',user)
                 .andWhere('accepted',false)
 
-            console.log("pending requests",pendingRequests)
+        if(!pendingRequests.length) return {};
 
-
+        return pendingRequests;
     },
 }
 
