@@ -5,10 +5,12 @@ const FriendRouter = express.Router();
 
 FriendRouter
     .post('/post/friend/request', (req,res,next) => {
-        const { user, friend } = req.body;
+        const { id, username, addUser } = req.body;
+        console.log('req body',req.body);
         const newRequest = {
-            user,
-            sent_request_to: friend
+            user: username,
+            sent_request_to: addUser.username,
+            accepted: false
         }
 
         const userRequest = FriendService.insertFriendRequest(
@@ -16,7 +18,7 @@ FriendRouter
             newRequest
         )
         console.log('userRequest',userRequest)
-    });
+});
 
 FriendRouter
     .get('/get/friend/:friend', async (req,res,next) => {
@@ -35,6 +37,6 @@ FriendRouter
                 res.json(result)
             })
             
-    });
+});
 
 module.exports = FriendRouter;

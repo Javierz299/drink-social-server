@@ -11,10 +11,31 @@ const FriendService = {
     },
 
     async insertFriendRequest(db,request){
-        let requestCheck = await db.select('sent_request_to')
+        let requestCheck = await db.select('user','sent_request_to')
                 .from('friend')
-                .where('sent_request_to',request.friend)
+                .where('user',request.user)
+                .andWhere('sent_request_to',request.sent_request_to)
         console.log('requestCheck',requestCheck)
+
+        if(requestCheck.length){
+            console.log("request already made")
+            return "request already made"
+        } else {
+            console.log("add friend")
+            return db
+            .insert(request)
+            .into('friend')
+            .returning('*')
+            .then(([request]) => request)
+        }
+
+
+    },
+    serializeRequset(req){
+        return {
+            user: req.user,
+            sent_request_to: req.sent_request_to,
+        }
     },
 }
 
