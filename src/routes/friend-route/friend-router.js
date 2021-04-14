@@ -18,6 +18,9 @@ FriendRouter
             newRequest
         )
         console.log('userRequest',userRequest)
+        res.status(201).json(FriendService.serializeRequset(userRequest));
+
+        next()
 });
 
 FriendRouter
