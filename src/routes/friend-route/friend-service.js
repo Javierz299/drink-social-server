@@ -51,6 +51,15 @@ const FriendService = {
 
         return pendingRequests;
     },
+
+    addFriend(db,user){
+
+        return db.select('accepted')
+            .from('friend')
+            .where('user',user.user)
+            .andWhere('sent_request_to',user.sent_request_to)
+            .update('accepted',true)
+    }
 }
 
 module.exports = FriendService;
