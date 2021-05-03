@@ -82,4 +82,23 @@ FriendRouter
 
     })
 
+FriendRouter
+    .delete('/delete/friend', (req,res,next) => {
+        const { user, sent_request_to } = req.body;
+        const deleteRequest = {
+            user,sent_request_to,
+        }
+        console.log("deleteRequest", deleteRequest)
+        FriendService.deleteFriend(req.app.get('db'),deleteRequest)
+            .then(result => {
+                if(!result){
+                    res.status(404).send({
+                    error: 'something went wrong while deleting request'
+                    })
+                }
+            
+                res.json(result)
+            })
+    })
+
 module.exports = FriendRouter;

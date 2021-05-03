@@ -59,7 +59,15 @@ const FriendService = {
             .where('user',user.user)
             .andWhere('sent_request_to',user.sent_request_to)
             .update('accepted',true)
-    }
+    },
+
+    deleteFriend(db,user){
+        return db.select('*')
+            .from('friend')
+            .where('user',user.user)
+            .andWhere('sent_request_to',user.sent_request_to)
+            .delete()
+    },
 }
 
 module.exports = FriendService;
