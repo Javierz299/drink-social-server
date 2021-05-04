@@ -61,11 +61,15 @@ const FriendService = {
             .update('accepted',true)
     },
 
-    getFriends(db,user){
-        return db.select('user')
-            .from('friend')
+    async getFriends(db,user){
+        let list = await db.select('id','username')
+            .from('user')
+            .join('friend', { 'user.username': 'friend.user'})
             .where('sent_request_to',user)
             .andWhere('accepted',true)
+            //.limit(1)
+        console.log("list",list);
+        return list;
     },
 
     deleteFriend(db,user){
