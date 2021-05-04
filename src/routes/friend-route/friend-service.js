@@ -61,6 +61,13 @@ const FriendService = {
             .update('accepted',true)
     },
 
+    getFriends(db,user){
+        return db.select('user')
+            .from('friend')
+            .where('sent_request_to',user)
+            .andWhere('accepted',true)
+    },
+
     deleteFriend(db,user){
         return db.select('*')
             .from('friend')

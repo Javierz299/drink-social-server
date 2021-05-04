@@ -101,4 +101,21 @@ FriendRouter
             })
     })
 
+    FriendRouter
+    .get('/get/friend/list/:user', (req,res,next) => {
+        const { user } = req.params;
+        
+        FriendService.getFriends(req.app.get('db'),user)
+            .then(result => {
+                console.log("friends",result)
+                if(!result){
+                    res.status(404).send({
+                    error: 'something went wrong while getting friend'
+                    })
+                }
+            
+                res.json(result)
+            })
+    })
+
 module.exports = FriendRouter;
